@@ -1,0 +1,1 @@
+Instagram Followers Scraper is a Python script that uses the Selenium library to automatically collect a list of followers of a given Instagram profile. This tool is useful for users who want to automatically receive and analyze data about followers of their or any other public Instagram profile.
