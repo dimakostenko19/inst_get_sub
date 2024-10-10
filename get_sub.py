@@ -5,9 +5,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 
 import time
-import pickle
-
-
 
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-notifications")
@@ -20,17 +17,20 @@ wait = WebDriverWait(driver, 10)
 
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
-def auth(link):
+def auth(email, password, link):
         driver.get(link)
         driver.implicitly_wait(10)
+        
+        username = driver.find_element(By.NAME, "username")
+        password = driver.find_element(By.NAME, "password")
+        time.sleep(3)
 
-        for c in pickle.load(open('cookies', "rb")):
-            driver.add_cookie(c)
-        time.sleep(1)
+        username.send_keys(email)
+        password.send_keys(password)
+        time.sleep(3)
 
-        driver.refresh()
-        time.sleep(10)
-
+        btn = driver.find_element(By.CSS_SELECTOR, "._acan._acap._acas._aj1-._ap30")
+        btn.click()
 
 def get_sub():
         sub_btn = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[2]/div/div[2]/section/main/div/header/section[3]/ul/li[2]/div/a")
@@ -63,7 +63,8 @@ def get_sub():
 try:   
     channel_name = ""
     def main():
-        auth(f"https://www.instagram.com/{channel_name}/")
+        auth(email="test", password="test", link="https://www.instagram.com/")
+        driver.get(f"https://www.instagram.com/{channel_name}")
         get_sub()
         
     main()
