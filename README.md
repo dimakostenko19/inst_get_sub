@@ -20,7 +20,7 @@
     pip install -r requirements.txt
 
 ### Usage
-1. Open the get_followers.py file in a text editor.
+1. Open the get_sub.py file in a text editor.
 
 2. Make the necessary changes to specify the group from which you want to retrieve followers.
 
